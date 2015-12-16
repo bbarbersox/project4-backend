@@ -11,14 +11,14 @@ class ParticipantsController < OpenReadController
 
   # GET /participants/1
   def show
-    @book = Participant.find(params[:id])
+    @participant = Participant.find(params[:id])
 
     render json: @participant
   end
 
   # POST /participants
   def create
-    @participant = current_user.participants.new(participant_params)
+    @participant = Participant.new(participant_params)
 
     if @participant.save
       render json: @participant, status: :created, location: @participant
@@ -44,11 +44,11 @@ class ParticipantsController < OpenReadController
   end
 
   def set_participant
-    @participant = current_user.participants.find(params[:id])
+    @participant = Participant.find(params[:id])
   end
 
   def participant_params
-    params.require(:participant).permit(:name, :phone, :type)
+    params.require(:participant).permit(:name, :email, :phone, :role)
   end
 
   private :set_participant, :participant_params

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :participants, except: [:new, :edit]
 
   resources :boats, except: [:new, :edit]
+
+  resources :teams, except: [:new, :edit]
 end

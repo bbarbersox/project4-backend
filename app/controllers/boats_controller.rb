@@ -26,7 +26,7 @@ class BoatsController < OpenReadController
 
   # POST /boats --- create a single boat  with the fields passed
   def create
-    @boat = current_user.boats.new(boat_params)
+    @boat = Boat.new(boat_params)
 
     if @boat.save
       render json: @boat, status: :created, location: @boat
@@ -52,11 +52,11 @@ class BoatsController < OpenReadController
   end
 
   def set_boat
-    @boat = current_user.boats.find(params[:id])
+    @boat = Boat.find(params[:id])
   end
 
   def boat_params
-    params.require(:boat).permit(:title, :license, :capacity)
+    params.require(:boat).permit(:title, :description, :capacity, :open_seats)
   end
 
   private :set_boat, :boat_params
