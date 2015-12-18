@@ -6,12 +6,12 @@ class BoatsController < OpenReadController
   # of boats based on the parameters specified by the user
   def index
     if params[:title]
-      @boats = boat.find(params[:title])
+      @boats = Boat.find(params[:title])
     else
       if params[:open_seats]
-        @boats = boat.find(params[:open_seats])
+        @boats = Boat.find(params[:open_seats])
       else
-        @boats = boat.all
+        @boats = Boat.all
       end
     end
     render json: @boats
@@ -19,7 +19,7 @@ class BoatsController < OpenReadController
 
   # GET /boats/1 --- find & return info for a single boat
   def show
-    @boat = boat.find(params[:id])
+    @boat = Boat.find(params[:id])
 
     render json: @boat
   end
