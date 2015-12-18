@@ -4,7 +4,11 @@ class ParticipantsController < OpenReadController
 
   # GET /participants
   def index
-    @participants = Participant.all
+    if params[:role]
+      @participants = Participant.where role: params[:role]
+    else
+      @participants = Participant.all
+    end
 
     render json: @participants
   end

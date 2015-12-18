@@ -6,10 +6,10 @@ class BoatsController < OpenReadController
   # of boats based on the parameters specified by the user
   def index
     if params[:title]
-      @boats = Boat.find(params[:title])
+      @boats = Boat.where title: params[:title]
     else
       if params[:open_seats]
-        @boats = Boat.find(params[:open_seats])
+        @boats = Boat.where open_seats: params[:open_seats]
       else
         @boats = Boat.all
       end
