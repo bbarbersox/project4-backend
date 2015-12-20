@@ -1,64 +1,26 @@
+# project4-backend
+fishingwithmission backend
 
-# User authentication
+Fishing with a Mission is a single page, full stack web app to support an annual one day vharity event that takes autistic kids and caregivers out fishing for a day.  The event is used to raise autism awareness and funding boston higashi school, a school serving autistic children from around the world..  The objectives of the web app are to allow event participants to register for the event, get additional info, and allow the event coordinator to view and manage the people (participants, volunteers, sponsors) and resources (teams and boats).
 
-## Register
+There is already a website (mylittlebuddysboat) that provides the charity event description and awareness.  The vision is this application would link toand provide back end processing for that web site.
 
-```
-curl --include --request POST --header "Content-Type: application/json" -d '{
-  "credentials": {
-    "email": "an@example.email",
-    "password": "an example password",
-    "password_confirmation": "an example password"
-  }
-}' http://localhost:3000/register
-```
+The Server side of this website was built on ruby and rails.  It provides 3 data models(boats, teams, and participants).  Participants is a join table for the other 2 tables and is to each with a foreign key.
 
-## Login
+There is also a user model that is used for authentication but is not linked to the other tables.
 
-```
-curl --request POST --header "Content-Type: application/json" -d '{
-  "credentials": {
-    "email": "an@example.email",
-    "password": "an example password"
-  }
-}' http://localhost:3000/login
-```
+There are routes and controllers for all three.
 
-## Logout
+The controller for each allows for creation, reads (single records and all records), upadtes and destruction from each and any model.
 
-```
-curl --request DELETE --header "Authorization: Token token=c017d611187e3350baffc52d35a4df69" http://localhost:3000/logout/1
-```
+The searches allow users to get info based on a number of fields.  At this time valiidations are not being performed although some will be added in the next phase.
 
-# Users
+Multiple table queries and/or serialization will also be added in the next phase.
 
-## List
+The front end of this web app is hosted on gh-pages on github at https://github.com/bbarbersox/project4-frontend.git
 
-```
-curl --header "Authorization: Token token=c017d611187e3350baffc52d35a4df69" http://localhost:3000/users
-```
+The back end of this web app is hosted on heroku at https://morning-reaches-9856.herokuapp.com/
 
-# Books
+The website backend is also in github at https://github.com/bbarbersox/project4-backend.git
 
-## List
-
-```
-curl --header "Authorization: Token token=c017d611187e3350baffc52d35a4df69" http://localhost:3000/books
-```
-
-**OR**
-
-```
-curl http://localhost:3000/books
-```
-
-## Create
-
-```
-curl --request POST --header "Authorization: Token token=be249dc0231396806f24c953cafae03a" --header "Content-Type: application/json" -d '{
-  "book": {
-    "title":"The Hold",
-    "isbn":"abc123def456"
-  }
-}'  http://localhost:3000/books
-```
+And finally the backend readme file is located at https://github.com/bbarbersox/project4-frontend/blob/gh-pages/README.md
