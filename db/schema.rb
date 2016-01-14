@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151214192031) do
     t.string   "email"
     t.string   "phone"
     t.string   "role"
-    t.integer  "boat_id"
-    t.integer  "team_id"
+    t.integer  "boat_id", null: false
+    t.integer  "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,6 +6,8 @@ class ParticipantsController < OpenReadController
   def index
     if params[:role]
       @participants = Participant.where role: params[:role]
+    elsif params[:boat_id]
+      @participants = Participant.where boat_id: params[:boat_id]
     else
       @participants = Participant.all
     end
@@ -52,7 +54,14 @@ class ParticipantsController < OpenReadController
   end
 
   def participant_params
-    params.require(:participant).permit(:name, :email, :phone, :role)
+    params.require(:participant).permit(
+      :name,
+      :email,
+      :phone,
+      :role,
+      :boat_id,
+      :team_id
+    )
   end
 
   private :set_participant, :participant_params
